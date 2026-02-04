@@ -78,6 +78,4 @@ Use this checklist to prepare the repo for a public release linked to the public
 
 ## Packaging & Release
 - [ ] Ensure importable package layout under `src/` or top‑level package
-- [ ] Add versioning and changelog
-- [ ] Tag `v1.0.0` and create GitHub release
 - [ ] Final sanity run of training with public config
