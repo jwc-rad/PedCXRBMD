@@ -1,0 +1,74 @@
+# @package _global_
+defaults:
+  - _self_
+  - override /data: default
+  - override /data/dataset: bmdcxr
+  - override /model: bmd
+  - override /networks: default
+  #- override /scheduler: step_cosinewarmrestart
+  - override /scheduler: epoch_initial
+  - override /optimizer: adam
+  - override /callbacks:
+    - learning_rate_monitor
+    - model_checkpoint
+  #- override /pretrained: null
+  #- override /paths: kdh
+
+hydra:
+  job:
+    name: ${task_name}
+    config:
+      override_dirname:
+        exclude_keys:
+          - logger.wandb.tags
+  output_subdir: config
+  run:
+    dir: runs/${hydra.job.name}/${now:%Y-%m-%d}_${now:%H-%M-%S}
+  sweep:
+    dir: runs/${hydra.job.name}/${now:%Y-%m-%d}_${now:%H-%M-%S}
+    subdir: ${hydra.job.override_dirname}
+
+logger:
+  wandb:
+    project: bmdcxr-exp
+
+task_name: bmdcxr-exp
+train: True
+valid: False
+test: False
+
+seed:
+  seed: 12345
+  deterministic: true
+
+trainer:
+  #max_steps: 12500
+  max_epochs: 100
+  #val_check_interval: 1
+  check_val_every_n_epoch: 1
+  log_every_n_steps: 10
+  #precision: 32
+  #detect_anomaly: true
+
+optimizer:
+  lr: 1e-4
+ 
+callbacks:   
+  model_checkpoint:
+    every_n_epochs: 1
+    filename: best_metric1__epoch={epoch:05d}_step={step:08d}_val_MAE={metrics/valid_MAE:.8f}
+    save_weights_only: True
+    auto_insert_metric_name: False
+    save_top_k: 1
+    monitor: metrics/valid_MAE
+    mode: max
+    save_last: False
+  learning_rate_monitor:
+    logging_interval: step
+
+data:
+  dataloader:
+    num_workers: 4
+    batch_size: 4
+    batch_size_inference: ${.batch_size}
+    persistent_workers: False

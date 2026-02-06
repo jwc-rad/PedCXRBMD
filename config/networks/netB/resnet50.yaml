@@ -1,0 +1,4 @@
+_target_: networks.backbone_tvm.ResNet50
+in_channels: ${data.dataset.image_channels}
+weights: ResNet50_Weights.DEFAULT
+out_channels: ${networks.backbone_channels}

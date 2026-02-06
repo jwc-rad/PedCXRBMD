@@ -1,0 +1,2 @@
+RMSE:
+  _target_: utils.metrics.NegativeRMSEMetric

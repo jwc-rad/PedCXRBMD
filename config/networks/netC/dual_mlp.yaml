@@ -1,0 +1,10 @@
+_target_: networks.classifier.DualInputMLP
+in1_channels: ${networks.backbone_channels}
+in2_channels: ${data.dataset.num_table_cols}
+out_channels: ${data.dataset.num_classes}
+hidden_channels:
+- 1024
+norm: null
+act: relu
+dropout: 0.
+last_act: null

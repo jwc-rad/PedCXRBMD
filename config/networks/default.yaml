@@ -1,0 +1,6 @@
+defaults:
+  - _self_
+  - netB: resnet50
+  - netC: dual_mlp
+
+backbone_channels: 512

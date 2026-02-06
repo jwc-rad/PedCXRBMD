@@ -1,0 +1,2 @@
+PearsonCor:
+  _target_: utils.metrics.PearsonCorMetric

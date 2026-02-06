@@ -1,0 +1,147 @@
+dataset_target: data.dataset.BMDXRDataset
+spatial_dims: 2
+image_channels: 1
+num_classes: 1
+image_target_size: 512
+image_extension: npy
+num_table_cols: 4
+table_cols:
+- StudyAge
+- Sex
+- Height
+- Weight
+label_name: Score_Spine
+cv_split: 5
+cv_fold: 0
+split_seed: 12345
+image_dir:
+  image: temp/sample_data/images
+dataset_file: temp/sample_data/ds.pkl
+train:
+  _target_: ${..dataset_target}
+  phase: train
+  image_dir: ${..image_dir}
+  label_name: ${..label_name}
+  cv_fold: ${..cv_fold}
+  cv_split: ${..cv_split}
+  split_seed: ${..split_seed}
+  image_extension: ${..image_extension}
+  table_cols: ${..table_cols}
+  dataset_file: ${..dataset_file}
+  iterations_per_epoch: null
+  transform:
+    load_image:
+      _target_: monai.transforms.LoadImaged
+      keys: image
+      image_only: true
+    channel_first:
+      _target_: monai.transforms.EnsureChannelFirstd
+      keys: image
+    affine:
+      _target_: monai.transforms.RandAffined
+      keys: image
+      prob: 0
+      padding_mode: zeros
+      rotate_range: 0.1
+      shear_range: 0.3
+      scale_range: 0.3
+      translate_range: 128
+    flip:
+      _target_: monai.transforms.RandFlipd
+      keys: image
+      prob: 0
+      spatial_axis: 1
+    resize:
+      _target_: monai.transforms.Resized
+      keys: image
+      mode: bilinear
+      spatial_size:
+      - ${data.dataset.image_target_size}
+      - ${data.dataset.image_target_size}
+    normalize:
+      _target_: monai.transforms.NormalizeIntensityd
+      keys: image
+    contrast:
+      _target_: monai.transforms.RandAdjustContrastd
+      keys: image
+      prob: 0
+      gamma:
+      - 0.5
+      - 2
+    shiftintensity:
+      _target_: monai.transforms.RandShiftIntensityd
+      keys: image
+      prob: 0
+      offsets: 2
+    scaleintensity:
+      _target_: monai.transforms.RandScaleIntensityd
+      keys: image
+      prob: 0
+      factors:
+      - -0.5
+      - 0.5
+  transform_seed: null
+
+valid:
+  _target_: ${..dataset_target}
+  phase: valid
+  image_dir: ${..image_dir}
+  label_name: ${..label_name}
+  cv_fold: ${..cv_fold}
+  cv_split: ${..cv_split}
+  split_seed: ${..split_seed}
+  image_extension: ${..image_extension}
+  table_cols: ${..table_cols}
+  dataset_file: ${..dataset_file}
+  iterations_per_epoch: null
+  transform:
+    load_image:
+      _target_: monai.transforms.LoadImaged
+      keys: image
+      image_only: true
+    channel_first:
+      _target_: monai.transforms.EnsureChannelFirstd
+      keys: image
+    resize:
+      _target_: monai.transforms.Resized
+      keys: image
+      mode: bilinear
+      spatial_size:
+      - ${data.dataset.image_target_size}
+      - ${data.dataset.image_target_size}
+    normalize:
+      _target_: monai.transforms.NormalizeIntensityd
+      keys: image
+  transform_seed: null
+
+test: 
+  _target_: ${..dataset_target}
+  phase: test
+  image_dir: ${..image_dir}
+  label_name: ${..label_name}
+  cv_fold: ${..cv_fold}
+  cv_split: ${..cv_split}
+  split_seed: ${..split_seed}
+  image_extension: ${..image_extension}
+  table_cols: ${..table_cols}
+  dataset_file: ${..dataset_file}
+  iterations_per_epoch: null
+  transform:
+    load_image:
+      _target_: monai.transforms.LoadImaged
+      keys: image
+      image_only: true
+    channel_first:
+      _target_: monai.transforms.EnsureChannelFirstd
+      keys: image
+    resize:
+      _target_: monai.transforms.Resized
+      keys: image
+      mode: bilinear
+      spatial_size:
+      - ${data.dataset.image_target_size}
+      - ${data.dataset.image_target_size}
+    normalize:
+      _target_: monai.transforms.NormalizeIntensityd
+      keys: image
+  transform_seed: null

@@ -1,0 +1,11 @@
+defaults:
+  - default
+
+_target_: model.bmd.BMDRegModel
+
+#multilabel: true
+
+lambda_cls: 1
+loss_cls: null
+
+metrics: null

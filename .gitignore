@@ -1,0 +1,23 @@
+.vscode
+*/.vscode/*
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+__pycache__
+*/__pycache__/*
+logs/
+*/logs/*
+*.egg-info
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+
+temp/
+*/temp/*
+runs/
+*/runs/*
+results/
+*/results/*
+
+**/*.ipynb

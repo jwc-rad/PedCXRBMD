@@ -1,0 +1,2 @@
+MAPE:
+  _target_: utils.metrics.NegativeMAPEMetric
