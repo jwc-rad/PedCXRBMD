@@ -47,6 +47,9 @@ python train.py experiment=exp_bmdcxr data/dataset=bmdcxr_dav1 +model/loss@model
 
 Outputs (configs, checkpoints, logs) are written under [runs/](runs/).
 
+## Pre-trained Weights
+The pre-trained weights have not been deposited in the public repository to protect institutional intellectual property and ongoing commercialization plans.
+
 ## Dummy Data and Format
 Generate a minimal dummy dataset to inspect the expected data structure and run a quick sanity check:
 
