@@ -1,6 +1,6 @@
-# Deep Learning–Based Bone Mineral Density Prediction Using Pediatric Chest Radiographs
+# Deep Learning–based Bone Mineral Density Prediction Using Pediatric Chest Radiographs
 
-Official repository for the paper “Deep Learning–Based Bone Mineral Density Prediction Using Pediatric Chest Radiographs: A Multicenter Feasibility Study” (under review).
+Official repository for the paper [“Deep Learning–based Bone Mineral Density Prediction Using Pediatric Chest Radiographs: A Multicenter Feasibility Study”](https://doi.org/10.1148/radiol.252761), published in *Radiology*.
 
 - Entry point: [train.py](train.py)
 - Key configs: [config/train.yaml](config/train.yaml), [config/experiment/](config/experiment/), [config/data/](config/data/), [config/paths/](config/paths/)
@@ -72,7 +72,22 @@ Point your dataset configuration or environment variable (e.g., `DATA_ROOT=temp/
 - Training configuration: see [config/train.yaml](config/train.yaml)
 
 ## Citation
-To be updated upon publication.
+
+Choi JW, Ryu YJ, Cheon J-E, Choi YH, Hwang J-Y, Lee S, Cho YJ, Koh SY, Lee YJ, Lee YA, Shin CH. Deep Learning–based Bone Mineral Density Prediction Using Pediatric Chest Radiographs: A Multicenter Feasibility Study. *Radiology*. 2026;319(1):e252761. doi: [10.1148/radiol.252761](https://doi.org/10.1148/radiol.252761).
+
+```bibtex
+@article{Choi2026PediatricBMD,
+  author  = {Choi, Jae Won and Ryu, Young Jin and Cheon, Jung-Eun and Choi, Young Hun and Hwang, Jae-Yeon and Lee, Seunghyun and Cho, Yeon Jin and Koh, Seok Young and Lee, Yun Jeong and Lee, Young Ah and Shin, Choong Ho},
+  title   = {Deep Learning–based Bone Mineral Density Prediction Using Pediatric Chest Radiographs: A Multicenter Feasibility Study},
+  journal = {Radiology},
+  year    = {2026},
+  volume  = {319},
+  number  = {1},
+  pages   = {e252761},
+  doi     = {10.1148/radiol.252761},
+  url     = {https://doi.org/10.1148/radiol.252761}
+}
+```
 
 ## License
 This project is released under the MIT License. See [LICENSE](LICENSE).
